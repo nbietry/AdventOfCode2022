@@ -1,17 +1,13 @@
 import java.io.BufferedReader
 import java.io.File
-import java.util.stream.Collectors
-
-
 
 fun main() {
     val bufferedReader: BufferedReader = File("Input.txt").bufferedReader()
     val inputString = bufferedReader.use { it.readText() }
-    //println(inputString)
 
-    val arrayOfElf = inputString.split("\n\n")
-    val response = arrayOfElf.map { x-> x.split('\n').toList().map{it.toInt()}.reduce() { x, y -> x + y  } }
-        .sortedDescending()[0]
-    println(response)
+    val input = inputString.split("\n\n")
+    val arrayOfElf = input.map { x-> x.split('\n').toList().map{it.toInt()}.reduce() { x, y -> x + y  } }
+        .sortedDescending()
+    println(arrayOfElf[0] + arrayOfElf[1] + arrayOfElf[2])
 }
 
