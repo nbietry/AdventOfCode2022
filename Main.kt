@@ -2,15 +2,17 @@ import java.io.File
 
 fun main() {
     val input = File("Input.txt").readLines()
-    val result = input.sumOf { x -> getValue(x) }
-    println("$result")
+    val inputListGrouped = input.withIndex()
+                                .groupBy { it.index / 3 }
+                                .map { it.value.map { it.value } }
+                                .map { x-> getValue(x[0], x[1], x[2]) }.sum()
+    println("$inputListGrouped")
 }
 
-fun getValue(inString: String): Int {
+fun getValue(inString1: String, inString2: String, inString3: String): Int {
 
-    val a = inString.substring(0, inString.toString().length / 2).toList()
-    val b = inString.substring(inString.toString().length / 2 ).toList()
-    val result = a.intersect(b).toCharArray()
+    val firstIntersec = inString1.toList().intersect(inString2.toList().toSet()).toCharArray()
+    val result = firstIntersec.intersect(inString3.toList().toSet()).toCharArray()
     if(result[0].code > 90) return result[0].code - 96
     else return result[0].code - 38
 }
