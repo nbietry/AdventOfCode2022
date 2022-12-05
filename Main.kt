@@ -8,9 +8,9 @@ fun main() {
 
 fun compareSequence(seq1: String, seq2: String): Boolean{
     val firstNumber = (seq1.split('-')[0].toInt() <= seq2.split('-')[0].toInt())
-    val secondNumber = (seq1.split('-')[1].toInt() >= seq2.split('-')[1].toInt())
+    val secondNumber = (seq1.split('-')[1].toInt() >= seq2.split('-')[0].toInt())
     val firstNumberReverse = (seq2.split('-')[0].toInt() <= seq1.split('-')[0].toInt())
-    val secondNumberReverse = (seq2.split('-')[1].toInt() >= seq1.split('-')[1].toInt())
+    val secondNumberReverse = (seq2.split('-')[1].toInt() >= seq1.split('-')[0].toInt())
     val result = (firstNumber && secondNumber) || (firstNumberReverse && secondNumberReverse)
     return  (firstNumber && secondNumber) || (firstNumberReverse && secondNumberReverse)
 }
