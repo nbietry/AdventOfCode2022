@@ -1,13 +1,16 @@
-import java.io.BufferedReader
 import java.io.File
 
 fun main() {
-    val bufferedReader: BufferedReader = File("Input.txt").bufferedReader()
-    val inputString = bufferedReader.use { it.readText() }
-
-    val input = inputString.split("\n\n")
-    val arrayOfElf = input.map { x-> x.split('\n').toList().map{it.toInt()}.reduce() { x, y -> x + y  } }
-        .sortedDescending()
-    println(arrayOfElf[0] + arrayOfElf[1] + arrayOfElf[2])
+    val input = File("Input.txt").readText().toCharArray()
+    val stack : ArrayDeque<Char> = ArrayDeque()
+    var index = 0
+    while (stack.size < 14 ){
+        if(stack.contains(input[index])) {
+            while (stack.first() != input[index]) stack.removeFirst()
+            stack.removeFirst()
+        }
+        stack.add(input[index])
+        index += 1
+    }
+    println(index)
 }
-
