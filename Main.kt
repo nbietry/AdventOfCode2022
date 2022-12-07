@@ -16,13 +16,19 @@ fun main() {
     for(move in part2){
         val match = Regex("(\\w+) (\\d+) (\\w+) (\\d+) (\\w+) (\\d+)").find(move)!!
         val (move, qty, from, src, to, dst) = match.destructured
-        for(i in 1..qty.toInt())
-            stack[dst.toInt()-1].addFirst(stack[src.toInt()-1].pop())
+        val tmpStack: ArrayDeque<String> = ArrayDeque<String>()
+        for(i in 1..qty.toInt()) {
+            tmpStack.addFirst(stack[src.toInt() - 1].pop())
+        }
+        for(i in 1..qty.toInt()) {
+            stack[dst.toInt()-1].addFirst(tmpStack.pop())
+        }
     }
-
+    println(stack)
     var response: String = ""
-    for(column in stack)
+    for(column in stack) {
+        println(column)
         response += column.pop()
-
+    }
     println(response.replace("[", "").replace("]", "").replace(" ", ""))
 }
